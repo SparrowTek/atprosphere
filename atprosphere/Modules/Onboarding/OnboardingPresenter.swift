@@ -78,5 +78,5 @@ struct OnboardingView: View {
 
 #Preview {
     OnboardingPresenter()
-//        .environment(OnboardingState(parentState: .init()))
+        .environment(OnboardingState(parentState: .init()))
 }
