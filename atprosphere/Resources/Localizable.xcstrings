@@ -1,0 +1,119 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    " " : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ password" : {
+
+    },
+    "%@ username or email address" : {
+
+    },
+    "%lld" : {
+
+    },
+    "Account" : {
+
+    },
+    "An AtProtocol client" : {
+
+    },
+    "Atprosphere %@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Atprosphere %1$@%2$@"
+          }
+        }
+      }
+    },
+    "Bluesky.social" : {
+
+    },
+    "create account" : {
+
+    },
+    "Don't have an account?" : {
+
+    },
+    "Following" : {
+
+    },
+    "IMAGE" : {
+
+    },
+    "let's sign you in" : {
+
+    },
+    "LOADING" : {
+
+    },
+    "Loading... " : {
+
+    },
+    "login" : {
+
+    },
+    "Logout" : {
+
+    },
+    "OK" : {
+
+    },
+    "password" : {
+
+    },
+    "PROFILE" : {
+
+    },
+    "server" : {
+
+    },
+    "Server" : {
+
+    },
+    "server options" : {
+
+    },
+    "SETTINGS" : {
+
+    },
+    "sign in" : {
+
+    },
+    "SIGN UP" : {
+
+    },
+    "Staging" : {
+
+    },
+    "Thomas Rademaker" : {
+
+    },
+    "THREAD" : {
+
+    },
+    "Username or email" : {
+
+    },
+    "View Under Construction" : {
+
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,22 @@
+//
+//  SignupView.swift
+//  atprosphere
+//
+//  Created by Thomas Rademaker on 8/28/23.
+//
+
+import SwiftUI
+
+struct SignupView: View {
+    var body: some View {
+        Text("SIGN UP")
+            .commonView()
+            .navBar(showBackButton: true)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        SignupView()
+    }
+}
