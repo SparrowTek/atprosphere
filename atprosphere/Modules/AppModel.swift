@@ -25,7 +25,6 @@ fileprivate struct AppModelViewModifier: ViewModifier {
         .task($checkLoginStatusTrigger) { await checkLoginStatus() }
     }
     
-    @MainActor
     private func checkLoginStatus() async {
         let did = currentSessionDid
         if let session = sessions.first(where: {$0.did == did }) {

@@ -28,8 +28,6 @@ struct OnboardingPresenter: View {
 
 struct OnboardingView: View {
     @Environment(OnboardingState.self) private var state
-    @State private var loginTrigger = PlainTaskTrigger()
-    @State private var signupTrigger = PlainTaskTrigger()
     
     var body: some View {
         VStack {
@@ -46,31 +44,19 @@ struct OnboardingView: View {
             Spacer()
             
             HStack(spacing: 16) {
-                Button("login", action: triggerLogin)
-                Button("create account", action: triggerSignup)
+                Button("login", action: login)
+                Button("create account", action: signup)
             }
             .buttonStyle(.commonButton)
             .padding()
         }
         .commonView()
-        .task($loginTrigger) { login() }
-        .task($signupTrigger) { signup() }
     }
     
-    private func triggerLogin() {
-        loginTrigger.trigger()
-    }
-    
-    private func triggerSignup() {
-        signupTrigger.trigger()
-    }
-    
-    @MainActor
     private func login() {
         state.path.append(.login)
     }
     
-    @MainActor
     private func signup() {
         state.path.append(.signup)
     }

@@ -59,7 +59,6 @@ struct MainTabPresenter: View {
         .sensoryFeedback(.selection, trigger: triggerSensoryFeedback)
     }
     
-    @MainActor
     private func createTab(for tab: AppState.Tab) -> some View {
         Button(action: {
             withAnimation { state.tab = tab }

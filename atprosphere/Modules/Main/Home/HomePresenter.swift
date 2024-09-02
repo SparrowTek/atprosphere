@@ -46,7 +46,6 @@ struct HomePresenter: View {
 
 struct HomeView: View {
     @Environment(HomeState.self) private var state
-    @State private var openSettingsTrigger = PlainTaskTrigger()
     
 //    @Query private var sessions: [ACSession]
 //    @Query private var timeline: [ACTimeline]
@@ -58,7 +57,7 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: triggerOpenSettings) {
+                    Button(action: openSettings) {
                         Image(systemName: "slider.horizontal.3")
                     }
                 }
@@ -67,7 +66,6 @@ struct HomeView: View {
                     HomeFeedFilter()
                 }
             }
-            .task($openSettingsTrigger) { openSettings() }
         // TODO: get timeline
 //            .task { await services.getTimeline(for: sessions.first!.id, limit: 30)}
 //            .onChange(of: timeline) {
@@ -75,11 +73,6 @@ struct HomeView: View {
 //            }
     }
     
-    private func triggerOpenSettings() {
-        openSettingsTrigger.trigger()
-    }
-    
-    @MainActor
     private func openSettings() {
         print("### open settings")
         state.sheet = .settings
