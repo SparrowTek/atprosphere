@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 import Vault
 import AtProtocol
-
+/*
 public enum ACSessionSchemaV1: VersionedSchema {
     public static var versionIdentifier = Schema.Version(1, 0, 0)
     
@@ -17,24 +17,44 @@ public enum ACSessionSchemaV1: VersionedSchema {
         [ACSession.self]
     }
     
-    @Model
-    public class ACSession {
-        @Attribute(.unique) public let did: String
-        public var handle: String
-        public var email: String?
-        
+//    @Model
+//    public class ACSession {
+//        @Attribute(.unique) public var did: String
+//        public var handle: String
+//        public var email: String?
+//        
+////        @Relationship(deleteRule: .cascade, inverse: \ACProfile.session) public var profile: ACProfile?
+////        @Relationship(deleteRule: .cascade, inverse: \ACPreferences.session) public var preferences: ACPreferences?
+////        @Relationship(deleteRule: .cascade, inverse: \ACTimeline.session) public var timeline: ACTimeline?
+//        
+//        init(did: String, handle: String, email: String? = nil/*, profile: ACProfile? = nil, preferences: ACPreferences? = nil, timeline: ACTimeline? = nil*/) {
+//            self.did = did
+//            self.handle = handle
+//            self.email = email
+////            self.profile = profile
+////            self.preferences = preferences
+////            self.timeline = timeline
+//        }
+//    }
+}*/
+
+@Model
+public class ACSession {
+    @Attribute(.unique) public var did: String
+    public var handle: String
+    public var email: String?
+    
 //        @Relationship(deleteRule: .cascade, inverse: \ACProfile.session) public var profile: ACProfile?
 //        @Relationship(deleteRule: .cascade, inverse: \ACPreferences.session) public var preferences: ACPreferences?
 //        @Relationship(deleteRule: .cascade, inverse: \ACTimeline.session) public var timeline: ACTimeline?
-        
-        init(did: String, handle: String, email: String? = nil/*, profile: ACProfile? = nil, preferences: ACPreferences? = nil, timeline: ACTimeline? = nil*/) {
-            self.did = did
-            self.handle = handle
-            self.email = email
+    
+    init(did: String, handle: String, email: String? = nil/*, profile: ACProfile? = nil, preferences: ACPreferences? = nil, timeline: ACTimeline? = nil*/) {
+        self.did = did
+        self.handle = handle
+        self.email = email
 //            self.profile = profile
 //            self.preferences = preferences
 //            self.timeline = timeline
-        }
     }
 }
 /*

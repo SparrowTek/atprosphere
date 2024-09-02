@@ -12,7 +12,7 @@ import UIKit
 // When using the .navigationBarBackButtonHidden(true) view modifier (which is needed to have a custom back button)
 // The swipe to go back functionality no longer works. This extension brings back the functionality
 
-extension UINavigationController: UIGestureRecognizerDelegate {
+extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
