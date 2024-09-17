@@ -33,8 +33,8 @@ actor ServicesModelActor {
         }
     }
     
-    func update(accessToken: String, refreshToken: String) {
-        AtProtocol.updateTokens(access: accessToken, refresh: refreshToken)
+    func update(accessToken: String, refreshToken: String) async {
+        await AtProtocol.updateTokens(access: accessToken, refresh: refreshToken)
     }
     
     func login(identifier: String, password: String) async -> ErrorMessage? {
@@ -46,11 +46,11 @@ actor ServicesModelActor {
     
     func getCurrent() async {
         guard let session = try? await AtProtocol.AtProtoLexicons().getCurrent() else { return }
-        try? updateSession(session)
+        try? await updateSession(session)
     }
     
-    private func updateSession(_ session: Session) throws {
-        try updateSession(did: session.did, handle: session.handle, email: session.email, accessJwt: session.accessJwt, refreshJwt: session.refreshJwt)
+    private func updateSession(_ session: Session) async throws {
+        try await updateSession(did: session.did, handle: session.handle, email: session.email, accessJwt: session.accessJwt, refreshJwt: session.refreshJwt)
     }
     
     private func getProfile(for sessionID: PersistentIdentifier) async {
@@ -127,15 +127,15 @@ actor ServicesModelActor {
 //        try? modelContext.save()
     }
     
-    func setup(hostURL: String?, did: String) {
+    func setup(hostURL: String?, did: String) async {
         let accessJwt = try? Vault.getPrivateKey(keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.accessJWT)\(did)"))
         let refreshJwt = try? Vault.getPrivateKey(keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.refreshJWT)\(did)"))
-        AtProtocol.setup(hostURL: hostURL ?? "", accessJWT: accessJwt, refreshJWT: refreshJwt,  delegate: self)
+        await AtProtocol.setup(hostURL: hostURL ?? "", accessJWT: accessJwt, refreshJWT: refreshJwt,  delegate: self)
     }
     
-    func update(hostURL: String?) {
+    func update(hostURL: String?) async {
         self.hostURL = hostURL
-        AtProtocol.update(hostURL: hostURL)
+        await AtProtocol.update(hostURL: hostURL)
     }
     
     func logout() async throws {
@@ -144,13 +144,13 @@ actor ServicesModelActor {
         guard let currentSession = sessions.first else { return }
         modelContext.delete(currentSession)
         try? modelContext.save()
-        update(hostURL: nil)
-        AtProtocol.updateTokens(access: nil, refresh: nil)
+        await update(hostURL: nil)
+        await AtProtocol.updateTokens(access: nil, refresh: nil)
         try? Vault.deletePrivateKey(keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.accessJWT)\(did)"))
         try? Vault.deletePrivateKey(keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.refreshJWT)\(did)"))
     }
     
-    private func updateSession(did: String, handle: String, email: String?, accessJwt: String?, refreshJwt: String?) throws {
+    private func updateSession(did: String, handle: String, email: String?, accessJwt: String?, refreshJwt: String?) async throws {
         let acSession: ACSession
         
         if let storedSession = try modelContext.fetch(FetchDescriptor<ACSession>(predicate: #Predicate { $0.did == did })).first {
@@ -169,14 +169,14 @@ actor ServicesModelActor {
             try Vault.savePrivateKey(accessJwt, keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.accessJWT)\(did)"))
             try Vault.savePrivateKey(refreshJwt, keychainConfiguration: KeychainConfiguration(serviceName: Constants.serviceName, accessGroup: nil, accountName: "\(Constants.refreshJWT)\(did)"))
             
-            AtProtocol.updateTokens(access: accessJwt, refresh: refreshJwt)
+            await AtProtocol.updateTokens(access: accessJwt, refresh: refreshJwt)
         }
     }
 }
 
 extension ServicesModelActor: ATProtocolDelegate {
     public func sessionUpdated(_ session: AtProtocol.Session) async {
-        try? updateSession(did: session.did, handle: session.handle, email: session.email, accessJwt: session.accessJwt, refreshJwt: session.refreshJwt)
+        try? await updateSession(did: session.did, handle: session.handle, email: session.email, accessJwt: session.accessJwt, refreshJwt: session.refreshJwt)
     }
 }
 
