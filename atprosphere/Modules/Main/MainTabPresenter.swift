@@ -119,7 +119,9 @@ struct MainTabPresenter: View {
     }
 }
 
-#Preview {
+#if DEBUG
+#Preview(traits: .sampleTimeline) {
     MainTabPresenter()
         .environment(AppState())
 }
+#endif

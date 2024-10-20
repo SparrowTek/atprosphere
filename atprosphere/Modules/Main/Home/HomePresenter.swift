@@ -48,10 +48,11 @@ struct HomeView: View {
     @Environment(HomeState.self) private var state
     
 //    @Query private var sessions: [ACSession]
-//    @Query private var timeline: [ACTimeline]
-    
+    @Query private var timeline: [ACTimeline]
+
     var body: some View {
-        TimelineListView(posts: [])
+        // TODO: the way the timeline feed is being passed needs re-thinking
+        TimelineListView(posts: timeline.flatMap { $0.feed } )
             .navBar()
             .commonView()
             .navigationBarTitleDisplayMode(.inline)
@@ -132,8 +133,10 @@ fileprivate struct HomeFeedFilter: View {
 //    }
 }
 
-#Preview {
+#if DEBUG
+#Preview(traits: .sampleTimeline) {
     HomePresenter()
         .environment(HomeState(parentState: .init()))
         .environment(AppState())
 }
+#endif
