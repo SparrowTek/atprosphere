@@ -30,8 +30,21 @@ struct SampleDataTimeline: PreviewModifier {
     }
 }
 
+struct SampleDataSession: PreviewModifier {
+    static func makeSharedContext() async throws -> ModelContainer {
+        let container = try ModelContainer(for: ACSession.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        
+        return container
+    }
+    
+    func body(content: Content, context: ModelContainer) -> some View {
+        content.modelContainer(context)
+    }
+}
+
 extension PreviewTrait where T == Preview.ViewTraits {
     @MainActor static var sampleTimeline: Self = .modifier(SampleDataTimeline())
+    @MainActor static var sampleSession: Self = .modifier(SampleDataSession())
 }
 
 fileprivate func object<c: Codable>(resourceName: String) -> c? {

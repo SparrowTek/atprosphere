@@ -46,8 +46,9 @@ struct HomePresenter: View {
 
 struct HomeView: View {
     @Environment(HomeState.self) private var state
+    @Environment(Services.self) private var services
     
-//    @Query private var sessions: [ACSession]
+    @Query private var sessions: [ACSession]
     @Query private var timeline: [ACTimeline]
 
     var body: some View {
@@ -67,11 +68,15 @@ struct HomeView: View {
                     HomeFeedFilter()
                 }
             }
-        // TODO: get timeline
-//            .task { await services.getTimeline(for: sessions.first!.id, limit: 30)}
-//            .onChange(of: timeline) {
-//                print("### TIMELINE: \(String(describing: timeline.first))")
-//            }
+            .task { await getTimeline() }
+            .onChange(of: timeline) {
+                print("### TIMELINE: \(String(describing: timeline.first))")
+            }
+    }
+    
+    private func getTimeline() async {
+        guard let session = sessions.first else { return }
+        await services.run.getTimeline(for: session.id, limit: 30)
     }
     
     private func openSettings() {
@@ -134,9 +139,10 @@ fileprivate struct HomeFeedFilter: View {
 }
 
 #if DEBUG
-#Preview(traits: .sampleTimeline) {
+#Preview(traits: .sampleTimeline, .sampleSession) {
     HomePresenter()
         .environment(HomeState(parentState: .init()))
         .environment(AppState())
+        .setupServices()
 }
 #endif

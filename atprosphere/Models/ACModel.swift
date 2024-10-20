@@ -53,6 +53,7 @@ struct AtprosphereDataContainerViewModifier: ViewModifier {
     let container: ModelContainer
     let schema = Schema([
         ACSession.self,
+        ACTimeline.self,
     ])
     
     init(inMemory: Bool) {
