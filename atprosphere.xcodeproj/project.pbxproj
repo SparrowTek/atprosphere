@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6C02915F2AE2B6C300874F53 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C02915E2AE2B6C300874F53 /* Vault */; };
-		6C2F87962AFEC4D1004AE56A /* AtProtocol in Frameworks */ = {isa = PBXBuildFile; productRef = 6C2F87952AFEC4D1004AE56A /* AtProtocol */; };
 		6C6C07892AA23AA300AB9EAD /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C07882AA23AA300AB9EAD /* Nuke */; };
 		6C6C078B2AA23AA300AB9EAD /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C078A2AA23AA300AB9EAD /* NukeExtensions */; };
 		6C6C078D2AA23AA300AB9EAD /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C078C2AA23AA300AB9EAD /* NukeUI */; };
 		6C6C078F2AA23AA300AB9EAD /* NukeVideo in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C078E2AA23AA300AB9EAD /* NukeVideo */; };
+		6C9284172CC54FD800CCF772 /* AtProtocol in Frameworks */ = {isa = PBXBuildFile; productRef = 6C9284162CC54FD800CCF772 /* AtProtocol */; };
 		6CFE6F722AE333E70020E320 /* AtProtocol in Frameworks */ = {isa = PBXBuildFile; productRef = 6CFE6F712AE333E70020E320 /* AtProtocol */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C2F87962AFEC4D1004AE56A /* AtProtocol in Frameworks */,
+				6C9284172CC54FD800CCF772 /* AtProtocol in Frameworks */,
 				6C6C07892AA23AA300AB9EAD /* Nuke in Frameworks */,
 				6CFE6F722AE333E70020E320 /* AtProtocol in Frameworks */,
 				6C6C078F2AA23AA300AB9EAD /* NukeVideo in Frameworks */,
@@ -88,7 +88,7 @@
 				6C6C078E2AA23AA300AB9EAD /* NukeVideo */,
 				6C02915E2AE2B6C300874F53 /* Vault */,
 				6CFE6F712AE333E70020E320 /* AtProtocol */,
-				6C2F87952AFEC4D1004AE56A /* AtProtocol */,
+				6C9284162CC54FD800CCF772 /* AtProtocol */,
 			);
 			productName = atprosphere;
 			productReference = 6C9282972CC49EF300CCF772 /* atprosphere.app */;
@@ -121,7 +121,7 @@
 			packageReferences = (
 				6C6C07872AA23AA300AB9EAD /* XCRemoteSwiftPackageReference "Nuke" */,
 				6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */,
-				6C2F87942AFEC4D1004AE56A /* XCRemoteSwiftPackageReference "AtProtocol" */,
+				6C9284152CC54FD800CCF772 /* XCLocalSwiftPackageReference "../Frameworks/AtProtocol" */,
 			);
 			productRefGroup = 6C7BF3652A9BCFED0082BCEA;
 			projectDirPath = "";
@@ -367,6 +367,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		6C9284152CC54FD800CCF772 /* XCLocalSwiftPackageReference "../Frameworks/AtProtocol" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Frameworks/AtProtocol;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -374,14 +381,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.1;
-			};
-		};
-		6C2F87942AFEC4D1004AE56A /* XCRemoteSwiftPackageReference "AtProtocol" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SparrowTek/AtProtocol.git";
-			requirement = {
-				branch = main;
-				kind = branch;
 			};
 		};
 		6C6C07872AA23AA300AB9EAD /* XCRemoteSwiftPackageReference "Nuke" */ = {
@@ -399,11 +398,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */;
 			productName = Vault;
-		};
-		6C2F87952AFEC4D1004AE56A /* AtProtocol */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6C2F87942AFEC4D1004AE56A /* XCRemoteSwiftPackageReference "AtProtocol" */;
-			productName = AtProtocol;
 		};
 		6C6C07882AA23AA300AB9EAD /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -424,6 +418,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6C6C07872AA23AA300AB9EAD /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
+		};
+		6C9284162CC54FD800CCF772 /* AtProtocol */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AtProtocol;
 		};
 		6CFE6F712AE333E70020E320 /* AtProtocol */ = {
 			isa = XCSwiftPackageProductDependency;

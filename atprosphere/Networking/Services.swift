@@ -119,12 +119,12 @@ actor ServicesModelActor {
 //    }
     
     func getTimeline(for sessionID: PersistentIdentifier, limit: Int) async {
-//        guard let session = modelContext.model(for: sessionID) as? ACSession,
-//              let timeline = try? await AtProtocol.BskyLexicons().getTimeline(limit: limit) else { return }
-//        
-//        let acTimeline = ACTimeline(feed: timeline.feed, cursor: timeline.cursor, session: session)
-//        modelContext.insert(acTimeline)
-//        try? modelContext.save()
+        guard let session = modelContext.model(for: sessionID) as? ACSession,
+              let timeline = try? await AtProtocol.BskyLexicons().getTimeline(limit: limit) else { return }
+        
+        let acTimeline = ACTimeline(feed: timeline.feed, cursor: timeline.cursor, session: session)
+        modelContext.insert(acTimeline)
+        try? modelContext.save()
     }
     
     func setup(hostURL: String?, did: String) async {
