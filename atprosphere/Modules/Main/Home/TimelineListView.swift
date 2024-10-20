@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 import AtProtocol
 
 struct TimelineListView: View {
     @Environment(HomeState.self) private var state
     @AppStorage(Constants.UserDefaults.currentSessionDid) private var currentSessionDid: String?
-    @State private var posts: [TimelineItem] = []
+    @State var posts: [TimelineItem]
     @Namespace private var topID
     
     var body: some View {
@@ -31,9 +32,9 @@ struct TimelineListView: View {
 //                guard let timeline = try? await AtProtocol.BskyLexicons().getTimeline(limit: 30) else { return }
 //                posts = timeline.feed
 //            }
-            #if DEBUG
-            posts = Timeline.preview.feed
-            #endif
+//            #if DEBUG
+//            posts = Timeline.preview.feed
+//            #endif
         }
     }
 }
@@ -374,7 +375,9 @@ fileprivate struct BoostedByView: View {
     }
 }
 
-#Preview {
-    TimelineListView()
+#Preview(traits: .sampleTimeline) {
+    @Previewable @Query var timeline: [ACTimeline]
+    
+    TimelineListView(posts: timeline.flatMap { $0.feed } )
         .environment(HomeState(parentState: .init()))
 }

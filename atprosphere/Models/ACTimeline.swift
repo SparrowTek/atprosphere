@@ -1,5 +1,5 @@
-//import SwiftData
-//import AtProtocol
+import SwiftData
+import AtProtocol
 //
 //public enum ACTimelineSchemaV1: VersionedSchema {
 //    public static var versionIdentifier = Schema.Version(1, 0, 0)
@@ -21,3 +21,16 @@
 //        }
 //    }
 //}
+
+@Model
+class ACTimeline {
+    var feed: [TimelineItem]
+    var cursor: String
+    var session: ACSession?
+    
+    init(feed: [TimelineItem], cursor: String, session: ACSession? = nil) {
+        self.feed = feed
+        self.cursor = cursor
+        self.session = session
+    }
+}

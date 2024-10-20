@@ -51,7 +51,7 @@ struct HomeView: View {
 //    @Query private var timeline: [ACTimeline]
     
     var body: some View {
-        TimelineListView()
+        TimelineListView(posts: [])
             .navBar()
             .commonView()
             .navigationBarTitleDisplayMode(.inline)
