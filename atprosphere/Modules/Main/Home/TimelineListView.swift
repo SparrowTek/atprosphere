@@ -375,9 +375,11 @@ fileprivate struct BoostedByView: View {
     }
 }
 
+#if DEBUG
 #Preview(traits: .sampleTimeline) {
     @Previewable @Query var timeline: [ACTimeline]
     
     TimelineListView(posts: timeline.flatMap { $0.feed } )
         .environment(HomeState(parentState: .init()))
 }
+#endif
