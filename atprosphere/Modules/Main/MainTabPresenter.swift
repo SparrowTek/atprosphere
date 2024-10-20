@@ -8,6 +8,39 @@
 import SwiftUI
 import SwiftData
 
+/*
+struct MainTabPresenter: View {
+    @Environment(AppState.self) private var state
+    
+    var body: some View {
+        @Bindable var state = state
+        
+        TabView(selection: $state.tab) {
+            Tab("Todo", systemImage: "list.bullet", value: AppState.Tab.todo) {
+                TodoPresenter()
+                    .environment(state.todoState)
+            }
+            
+            Tab("Timer", systemImage: "timer", value: AppState.Tab.timer) {
+                TimerPresenter()
+                    .environment(state.timerState)
+            }
+            
+            /*
+            Tab("Insights", systemImage: "chart.bar.xaxis.ascending", value: AppState.Tab.insights) {
+                InsightsPresenter()
+                    .environment(state.insightsState)
+            }
+             */
+            
+            Tab("Settings", systemImage: "gearshape", value: AppState.Tab.settings) {
+                SettingsPresenter()
+                    .environment(state.settingsState)
+            }
+        }
+    }
+}*/
+
 struct MainTabPresenter: View {
     @Environment(AppState.self) private var state
     @State private var triggerSensoryFeedback = false
@@ -19,25 +52,29 @@ struct MainTabPresenter: View {
         
         ZStack {
             TabView(selection: $state.tab) {
-                Group {
+                Tab(value: AppState.Tab.home) {
                     HomePresenter()
                         .environment(state.homeState)
-                        .tag(AppState.Tab.home)
-                    
+                }
+                
+                Tab(value: AppState.Tab.search) {
                     SearchPresenter()
                         .environment(state.searchState)
-                        .tag(AppState.Tab.search)
-                    
+                }
+                
+                Tab(value: AppState.Tab.notifications) {
                     NotificationsPresenter()
                         .environment(state.notificationsState)
-                        .tag(AppState.Tab.notifications)
-                    
+                }
+                
+                Tab(value: AppState.Tab.profile) {
                     ProfilePresenter()
                         .environment(state.profileState)
-                        .tag(AppState.Tab.profile)
                 }
-                .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(Color.primaryWhite, for: .tabBar)
+                
+                // TODO: do I need these modifiers??
+//                .toolbarBackground(.visible, for: .tabBar)
+//                .toolbarBackground(Color.primaryWhite, for: .tabBar)
             }
             
             VStack(spacing: 0) {
