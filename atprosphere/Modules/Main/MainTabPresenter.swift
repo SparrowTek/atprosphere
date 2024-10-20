@@ -8,39 +8,6 @@
 import SwiftUI
 import SwiftData
 
-/*
-struct MainTabPresenter: View {
-    @Environment(AppState.self) private var state
-    
-    var body: some View {
-        @Bindable var state = state
-        
-        TabView(selection: $state.tab) {
-            Tab("Todo", systemImage: "list.bullet", value: AppState.Tab.todo) {
-                TodoPresenter()
-                    .environment(state.todoState)
-            }
-            
-            Tab("Timer", systemImage: "timer", value: AppState.Tab.timer) {
-                TimerPresenter()
-                    .environment(state.timerState)
-            }
-            
-            /*
-            Tab("Insights", systemImage: "chart.bar.xaxis.ascending", value: AppState.Tab.insights) {
-                InsightsPresenter()
-                    .environment(state.insightsState)
-            }
-             */
-            
-            Tab("Settings", systemImage: "gearshape", value: AppState.Tab.settings) {
-                SettingsPresenter()
-                    .environment(state.settingsState)
-            }
-        }
-    }
-}*/
-
 struct MainTabPresenter: View {
     @Environment(AppState.self) private var state
     @State private var triggerSensoryFeedback = false
