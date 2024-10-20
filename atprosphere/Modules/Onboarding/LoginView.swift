@@ -147,5 +147,6 @@ struct LoginView: View {
     NavigationStack {
         LoginView()
             .environment(OnboardingState(parentState: .init()))
+            .setupServices()
     }
 }
