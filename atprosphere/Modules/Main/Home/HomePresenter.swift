@@ -49,13 +49,13 @@ struct HomeView: View {
     @Environment(Services.self) private var services
     
     @Query private var sessions: [ACSession]
-    @Query private var timeline: [ACTimeline]
+    @Query private var timelines: [ACTimeline]
 
     var body: some View {
         // TODO: the way the timeline feed is being passed needs re-thinking
-        TimelineListView(posts: timeline.flatMap { $0.feed } )
+        TimelineListView(timelines: timelines)
             .navBar()
-            .commonView()
+            .fullScreenColorView()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -69,8 +69,8 @@ struct HomeView: View {
                 }
             }
             .task { await getTimeline() }
-            .onChange(of: timeline) {
-                print("### TIMELINE: \(String(describing: timeline.first))")
+            .onChange(of: timelines) {
+                print("### TIMELINE: \(String(describing: timelines.first))")
             }
     }
     

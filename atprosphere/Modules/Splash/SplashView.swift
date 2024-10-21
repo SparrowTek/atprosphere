@@ -18,7 +18,7 @@ struct SplashView: View {
                 .font(.title3)
                 .foregroundStyle(.primaryBlack.opacity(0.85))
         }
-        .commonView()
+        .fullScreenColorView()
     }
 }
 

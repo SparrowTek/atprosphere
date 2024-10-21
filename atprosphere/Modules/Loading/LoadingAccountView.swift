@@ -23,7 +23,7 @@ struct LoadingAccountView: View {
                 ProgressView()
             }
         }
-        .commonView()
+        .fullScreenColorView()
     }
 }
 

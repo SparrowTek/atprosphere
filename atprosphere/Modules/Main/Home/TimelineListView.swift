@@ -15,6 +15,11 @@ struct TimelineListView: View {
     @State var posts: [TimelineItem]
     @Namespace private var topID
     
+    init(timelines: [ACTimeline]) {
+        _posts = State(initialValue: timelines.flatMap { $0.feed })
+        print("### POSTS COUNT: \(posts.count)")
+    }
+    
     var body: some View {
         @Bindable var state = state
         
@@ -24,18 +29,7 @@ struct TimelineListView: View {
         }
         .scrollableToTop(scrollToTop: $state.scrollToTop, topID: topID)
         .listStyle(.plain)
-        .commonView()
-        .task {
-//            if isCanvas {
-//                posts = Timeline.preview.feed
-//            } else {
-//                guard let timeline = try? await AtProtocol.BskyLexicons().getTimeline(limit: 30) else { return }
-//                posts = timeline.feed
-//            }
-//            #if DEBUG
-//            posts = Timeline.preview.feed
-//            #endif
-        }
+        .fullScreenColorView()
     }
 }
 
@@ -90,7 +84,7 @@ fileprivate struct PostCell: View {
                 }
             }
         }
-        .commonView()
+        .fullScreenColorView()
         .listRowBackground(Color.clear)
     }
     
@@ -379,7 +373,7 @@ fileprivate struct BoostedByView: View {
 #Preview(traits: .sampleTimeline) {
     @Previewable @Query var timeline: [ACTimeline]
     
-    TimelineListView(posts: timeline.flatMap { $0.feed } )
+    TimelineListView(timelines: timeline)
         .environment(HomeState(parentState: .init()))
 }
 #endif

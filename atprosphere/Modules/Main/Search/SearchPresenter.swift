@@ -17,7 +17,7 @@ struct SearchView: View {
     var body: some View {
         UnderConstructionView()
             .navBar()
-            .commonView()
+            .fullScreenColorView()
     }
 }
 

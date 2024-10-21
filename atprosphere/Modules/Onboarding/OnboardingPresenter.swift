@@ -50,7 +50,7 @@ struct OnboardingView: View {
             .buttonStyle(.commonButton)
             .padding()
         }
-        .commonView()
+        .fullScreenColorView()
     }
     
     private func login() {

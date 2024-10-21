@@ -52,7 +52,7 @@ extension View {
     NavigationStack {
         Text("Test")
             .navBar(title: .string("View"), showBackButton: true)
-            .commonView()
+            .fullScreenColorView()
             .foregroundStyle(.primaryBlack)
     }
 }

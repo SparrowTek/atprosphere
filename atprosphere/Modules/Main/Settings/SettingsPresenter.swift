@@ -29,7 +29,7 @@ struct SettingsView: View {
             })
         }
         .navBar()
-        .commonView()
+        .fullScreenColorView()
         .presentationDragIndicator(.visible)
     }
 }

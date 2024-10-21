@@ -103,7 +103,7 @@ struct LoginView: View {
             .disabled(requestInProgress)
             .padding()
         }
-        .commonView()
+        .fullScreenColorView()
         .navBar(showBackButton: true)
         .task($loginTrigger) { await login() }
         .task($createAccountTrigger) { createAccount() }

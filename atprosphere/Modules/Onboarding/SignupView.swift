@@ -10,7 +10,7 @@ import SwiftUI
 struct SignupView: View {
     var body: some View {
         Text("SIGN UP")
-            .commonView()
+            .fullScreenColorView()
             .navBar(showBackButton: true)
     }
 }
