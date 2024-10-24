@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C01D66D2CCAD39D00956AA7 /* AtProtocol in Frameworks */ = {isa = PBXBuildFile; productRef = 6C01D66C2CCAD39D00956AA7 /* AtProtocol */; };
 		6C02915F2AE2B6C300874F53 /* Vault in Frameworks */ = {isa = PBXBuildFile; productRef = 6C02915E2AE2B6C300874F53 /* Vault */; };
 		6C6C07892AA23AA300AB9EAD /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C07882AA23AA300AB9EAD /* Nuke */; };
 		6C6C078B2AA23AA300AB9EAD /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6C6C078A2AA23AA300AB9EAD /* NukeExtensions */; };
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C9284172CC54FD800CCF772 /* AtProtocol in Frameworks */,
+				6C01D66D2CCAD39D00956AA7 /* AtProtocol in Frameworks */,
 				6C6C07892AA23AA300AB9EAD /* Nuke in Frameworks */,
 				6CFE6F722AE333E70020E320 /* AtProtocol in Frameworks */,
 				6C6C078F2AA23AA300AB9EAD /* NukeVideo in Frameworks */,
@@ -89,6 +91,7 @@
 				6C02915E2AE2B6C300874F53 /* Vault */,
 				6CFE6F712AE333E70020E320 /* AtProtocol */,
 				6C9284162CC54FD800CCF772 /* AtProtocol */,
+				6C01D66C2CCAD39D00956AA7 /* AtProtocol */,
 			);
 			productName = atprosphere;
 			productReference = 6C9282972CC49EF300CCF772 /* atprosphere.app */;
@@ -121,7 +124,7 @@
 			packageReferences = (
 				6C6C07872AA23AA300AB9EAD /* XCRemoteSwiftPackageReference "Nuke" */,
 				6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */,
-				6C9284152CC54FD800CCF772 /* XCLocalSwiftPackageReference "../Frameworks/AtProtocol" */,
+				6C01D66B2CCAD39D00956AA7 /* XCRemoteSwiftPackageReference "AtProtocol" */,
 			);
 			productRefGroup = 6C7BF3652A9BCFED0082BCEA;
 			projectDirPath = "";
@@ -367,14 +370,15 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		6C9284152CC54FD800CCF772 /* XCLocalSwiftPackageReference "../Frameworks/AtProtocol" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Frameworks/AtProtocol;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		6C01D66B2CCAD39D00956AA7 /* XCRemoteSwiftPackageReference "AtProtocol" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SparrowTek/AtProtocol.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SparrowTek/Vault.git";
@@ -394,6 +398,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6C01D66C2CCAD39D00956AA7 /* AtProtocol */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C01D66B2CCAD39D00956AA7 /* XCRemoteSwiftPackageReference "AtProtocol" */;
+			productName = AtProtocol;
+		};
 		6C02915E2AE2B6C300874F53 /* Vault */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6C02915D2AE2B6C300874F53 /* XCRemoteSwiftPackageReference "Vault" */;
