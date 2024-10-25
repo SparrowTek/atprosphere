@@ -73,9 +73,10 @@ struct HomeView: View {
 
 fileprivate struct HomeFeedFilter: View {
     @Environment(HomeState.self) private var state
-//    @Query private var sessions: [ACSession]
-//    @State private var feed: ACFeed?
-//    @AppStorage(Constants.UserDefaults.currentSessionDid) private var currentSessionDid: String?
+    @Query private var sessions: [ACSession]
+    @Query private var feeds: [ACFeed]
+    @State private var feed: ACFeed?
+    @AppStorage(Constants.UserDefaults.currentSessionDid) private var currentSessionDid: String?
     
     var body: some View {
         
@@ -85,7 +86,7 @@ fileprivate struct HomeFeedFilter: View {
 //                    cellForFeed($0)
 //                }
 //            }
-//            
+            
 //            Menu("Saved Feeds") {
 //                Picker(selection: $feed, label: Text("Saved Feeds filter options")) {
 //                    ForEach((try? sessions.filter(#Predicate { $0.did == currentSessionDid ?? "" }).first?.preferences?.saved) ?? []) {
@@ -96,8 +97,7 @@ fileprivate struct HomeFeedFilter: View {
             
         } label: {
             HStack {
-//                Text(feed?.name ?? "")
-                Text("Following")
+                Text(feed?.name ?? "")
                     .font(.headline)
                 Image(systemName: "chevron.down")
                     .font(.caption2)
@@ -109,23 +109,23 @@ fileprivate struct HomeFeedFilter: View {
     }
     
     private func setupFirstFeed() {
-//        guard feed == nil else { return }
-//        feed = feeds.first
+        guard feed == nil else { return }
+        feed = feeds.first
     }
     
-//    private func cellForFeed(_ feed: ACFeed) -> some View {
-//        HStack {
-//            Text(feed.name)
-//            Spacer()
-//            CommonImage(image: .url(url: feed.avatar, sfSymbol: "checkmark"))
-//        }
-//        .padding(.horizontal)
-//        .tag(feed)
-//    }
+    private func cellForFeed(_ feed: ACFeed) -> some View {
+        HStack {
+            Text(feed.name)
+            Spacer()
+            CommonImage(image: .url(url: feed.avatar, sfSymbol: "checkmark"))
+        }
+        .padding(.horizontal)
+        .tag(feed)
+    }
 }
 
 #if DEBUG
-#Preview(traits: .sampleTimeline, .sampleSession) {
+#Preview(traits: .sampleTimeline, .sampleSession, .sampleFeeds) {
     HomePresenter()
         .environment(HomeState(parentState: .init()))
         .environment(AppState())
