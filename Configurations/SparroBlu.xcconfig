@@ -1,0 +1,10 @@
+//
+//  SparroBlu.xcconfig
+//  SparroBlu
+//
+//  Created by Thomas Rademaker on 11/14/23.
+//
+
+#include "User.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = $(BUNDLE_ID_PREFIX).sparroBlu
