@@ -46,14 +46,9 @@ struct HomePresenter: View {
 
 struct HomeView: View {
     @Environment(HomeState.self) private var state
-    @Environment(Services.self) private var services
-    
-    @Query private var sessions: [ACSession]
-    @Query private var timelines: [ACTimeline]
 
     var body: some View {
-        // TODO: the way the timeline feed is being passed needs re-thinking
-        TimelineListView(timelines: timelines)
+        TimelineListView()
             .navBar()
             .fullScreenColorView()
             .navigationBarTitleDisplayMode(.inline)
@@ -68,15 +63,6 @@ struct HomeView: View {
                     HomeFeedFilter()
                 }
             }
-            .task { await getTimeline() }
-            .onChange(of: timelines) {
-                print("### TIMELINE: \(String(describing: timelines.first))")
-            }
-    }
-    
-    private func getTimeline() async {
-        guard let session = sessions.first else { return }
-        await services.run.getTimeline(for: session.id, limit: 30)
     }
     
     private func openSettings() {

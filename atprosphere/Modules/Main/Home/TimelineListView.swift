@@ -11,25 +11,28 @@ import AtProtocol
 
 struct TimelineListView: View {
     @Environment(HomeState.self) private var state
+    @Environment(Services.self) private var services
     @AppStorage(Constants.UserDefaults.currentSessionDid) private var currentSessionDid: String?
-    @State var posts: [TimelineItem]
+    @Query private var sessions: [ACSession]
+    @Query private var timelines: [ACTimeline]
     @Namespace private var topID
-    
-    init(timelines: [ACTimeline]) {
-        _posts = State(initialValue: timelines.flatMap { $0.feed })
-        print("### POSTS COUNT: \(posts.count)")
-    }
     
     var body: some View {
         @Bindable var state = state
         
-        List(posts) {
+        List(timelines.flatMap { $0.feed }) {
             PostCell(timelineItem: $0)
-                .id($0 == posts.first ? topID : nil)
+                .id($0 == state.posts.first ? topID : nil)
         }
         .scrollableToTop(scrollToTop: $state.scrollToTop, topID: topID)
         .listStyle(.plain)
+        .task { await getTimeline() }
         .fullScreenColorView()
+    }
+    
+    private func getTimeline() async {
+        guard let session = sessions.first else { return }
+        await services.run.getTimeline(for: session.id, limit: 30)
     }
 }
 
@@ -371,9 +374,8 @@ fileprivate struct BoostedByView: View {
 
 #if DEBUG
 #Preview(traits: .sampleTimeline) {
-    @Previewable @Query var timeline: [ACTimeline]
-    
-    TimelineListView(timelines: timeline)
+    TimelineListView()
         .environment(HomeState(parentState: .init()))
+        .setupServices()
 }
 #endif

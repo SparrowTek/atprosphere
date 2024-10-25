@@ -27,6 +27,7 @@ class HomeState {
     var sheet: Sheet?
     var path: [Path] = []
     var images: TimelineImage?
+    var posts: [TimelineItem] = []
     
     init(parentState: AppState) {
         self.parentState = parentState
